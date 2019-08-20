@@ -35,6 +35,9 @@ spec:
           args:
             - '--storage.tsdb.retention={{ .Values.retention }}'
             - '--config.file=/etc/prometheus/prometheus.yml'
+{{- if .Values.global.logging.json }}
+            - '--log.format=json'
+{{- end }}
           ports:
             - containerPort: 9090
               name: http
