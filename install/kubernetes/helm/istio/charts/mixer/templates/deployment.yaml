@@ -57,6 +57,9 @@
 {{- if $.Values.global.logging.level }}
           - --log_output_level={{ $.Values.global.logging.level }}
 {{- end}}
+{{- if $.Values.global.logging.json }}
+          - --log_as_json=true
+{{- end}}
 {{- if $.Values.global.useMCP }}
     {{- if $.Values.global.controlPlaneSecurityEnabled}}
           - --configStoreURL=mcps://istio-galley.{{ $.Release.Namespace }}.svc:9901
@@ -235,6 +238,9 @@
           - unix:///sock/mixer.socket
 {{- if $.Values.global.logging.level }}
           - --log_output_level={{ $.Values.global.logging.level }}
+{{- end}}
+{{- if $.Values.global.logging.json }}
+          - --log_as_json=true
 {{- end}}
 {{- if $.Values.global.useMCP }}
     {{- if $.Values.global.controlPlaneSecurityEnabled}}

@@ -121,6 +121,9 @@ spec:
         {{- if $.Values.global.logging.level }}
           - --log_output_level={{ $.Values.global.logging.level }}
         {{- end}}
+        {{- if $.Values.global.logging.json }}
+          - --log_as_json=true
+        {{- end}}
           - --drainDuration
           - '45s' #drainDuration
           - --parentShutdownDuration

@@ -112,10 +112,13 @@ global:
   # Default tag for Istio images.
   tag: master-latest-daily
 
-  # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
-  # The control plane has different scopes depending on component, but can configure default log level across all components
-  # If empty, default scope and level will be used as configured in code
   logging:
+    # Configures Istio components to log in JSON format, rather than plain-text
+    json: true
+
+    # Comma-separated minimum per-scope logging level of messages to output, in the form of <scope>:<level>,<scope>:<level>
+    # The control plane has different scopes depending on component, but can configure default log level across all components
+    # If empty, default scope and level will be used as configured in code
     level: "default:info"
 
   # monitoring port used by mixer, pilot, galley
@@ -302,10 +305,10 @@ global:
     #   namespace with the key matching the base of the provided cacertPath and the value being the cacert itself.
     #
     lightstep:
-      address: ""                # example: lightstep-satellite:443
-      accessToken: ""            # example: abcdefg1234567
-      secure: true               # example: true|false
-      cacertPath: ""             # example: /etc/lightstep/cacert.pem
+      address: "" # example: lightstep-satellite:443
+      accessToken: "" # example: abcdefg1234567
+      secure: true # example: true|false
+      cacertPath: "" # example: /etc/lightstep/cacert.pem
     zipkin:
       # Host:Port for reporting trace data in zipkin format. If not specified, will default to
       # zipkin service (port 9411) in the same namespace as the other istio components.
@@ -321,7 +324,8 @@ global:
     enabled: false
 
   # Lists the secrets you need to use to pull Istio images from a private registry.
-  imagePullSecrets: []
+  imagePullSecrets:
+    []
     # - private-registry-key
 
   # Specify pod scheduling arch(amd64, ppc64le, s390x) and weight as follows:
